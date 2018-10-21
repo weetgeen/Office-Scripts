@@ -1,7 +1,7 @@
 ﻿ 
     #Filepath to document folder
     [String]$WordFilePath = "I:\word\*"  #source
-    [String]$DestinationFolder = "I:\KopieDatasheetsWord\test\img\" #Destination
+    [String]$DestinationFolder = "I:\img\" #Destination
     $fileType = "*docx"  #Filter to only include Docx files
    
 	#Gets every file from the folder
