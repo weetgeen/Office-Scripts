@@ -1,6 +1,6 @@
-﻿$CSV = Import-CSV I:\TMP\fotoimo.csv -Delimiter ';'
+﻿$CSV = Import-CSV I:\TMP\names.csv -Delimiter ';'
   
-$ImageFilePath       = "H:\JPG"    #Rename to absolute filepath of images
+$SourceFilePath       = "H:\JPG"    #Rename to absolute filepath of images
 $DestinationFilePath = "H:\Output" #Rename to absolute filepath of destiantion folder
 
 
@@ -13,7 +13,7 @@ ForEach($item in $CSV)
     $Column2 = $item."Column2"   #$item.columnname
 
 
-    Get-ChildItem "$ImageFilePath\$Column1.jpg" | Copy-Item -destination "$DestinationFilePath\$Column2.jpg" #Copy's image from ImageFilePath to Destination and renames it to $column2
+    Get-ChildItem "$SourceFilePath\$Column1.jpg" | Copy-Item -destination "$DestinationFilePath\$Column2.jpg" #Copy's image from ImageFilePath to Destination and renames it to $column2
 
 
     Write-Output "Processing: $Column1 ---> $Column2" #Write process
