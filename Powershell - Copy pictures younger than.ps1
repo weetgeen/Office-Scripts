@@ -1,4 +1,4 @@
-#Script that copy's pictures from $Folder to $KalenderFoto's
+#Script that copy's pictures from $Folder to $Destination that are younger than $Age
 
 $Folder  = "E:\Pictures" 
 $Destination = "E:\New Pictures"
