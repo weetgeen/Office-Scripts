@@ -1,0 +1,15 @@
+#Script to copy one file multiple times with filenames as given in the first csv column
+
+$csv = Import-CSV "C:\csv" -Delimiter ';'
+  
+$ImageFilePath       = "C:\img.jpg"            #Rename to absolute filepath of image
+$DestinationFilePath = "C:\Destinationfolder\" #Rename to absolute filepath of destiantion folder
+
+
+ForEach($item in $csv)
+{
+   
+    $filename = $item.nummer
+    $ImageFilePath | Copy-Item -destination "$DestinationFilePath\$filename.jpg" 
+    Write-Output "Processing: $ImageFilePath ---> $filename" #Write process
+}
