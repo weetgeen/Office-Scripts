@@ -1,0 +1,24 @@
+$SQLServer   = "sql"
+$SQLDBName   = "DBNAME"
+
+#$artikelGroepId = Read-Host "Artikelgroep Id"
+
+$extractFile = "C:\output.csv"
+
+$SQLDBQuery  = "SELECT * FROM tablename WHERE ....."
+
+$connectionstring = "Data Source=$SQLServer;" +             
+                        "Integrated Security=True;" +            
+                        "Initial Catalog=$SQLDBName";   
+
+$connection = New-Object System.Data.SqlClient.SqlConnection
+$connection.ConnectionString = $connectionString
+$command = New-Object System.Data.SqlClient.SqlCommand
+$command.CommandText = $SQLDBQuery
+$command.Connection = $connection
+$SqlAdapter = New-Object System.Data.SqlClient.SqlDataAdapter
+$SqlAdapter.SelectCommand = $command
+$DataSet = New-Object System.Data.DataSet
+$SqlAdapter.Fill($DataSet)
+$connection.Close()
+$DataSet.Tables[0] | Export-Csv $extractFile -notypeinformation -Encoding UTF8 –Delimiter “;”
