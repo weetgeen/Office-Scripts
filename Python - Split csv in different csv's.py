@@ -2,7 +2,7 @@
 
 import csv
 
-inpurCSV = open("I:\\PYTHON\\file.csv")
+inputCSV = open("I:\\PYTHON\\file.csv")
 outputDir = "I:\\PYTHON\\"
 
 rowToCheckForChange = '3'
