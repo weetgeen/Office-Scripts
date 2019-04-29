@@ -1,0 +1,22 @@
+#Sends an email for every row in a CSV file
+
+$csv = Import-CSV "emailcontent.csv" -Delimiter ';'
+  
+ForEach($item in $csv)
+{
+   
+    $MAIL        = $item."Email Adress"
+    $Subject     = $item."Subject"
+    $Message     = $item."Message"
+    $Attachement = $item."Attachement"
+
+
+    Write-Output "Emailing ---> $MAIL" #Write process
+    Write-Output "Subject  ---> $Subject" #Write process
+    Write-Output "Message  ---> $Message" #Write process
+    Write-Output "Attachement ---> $Attachement" #Write process
+
+    Send-MailMessage -From 'weetgeen <name@domain.com>' -To $MAIL -Subject $Subject -Body $Message -Attachments  $Attachement -SmtpServer 'SMTPSERVER'
+
+    Write-Host "Succes" -ForegroundColor Green
+}
