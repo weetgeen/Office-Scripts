@@ -1,8 +1,6 @@
 $SQLServer   = "sql"
 $SQLDBName   = "DBNAME"
 
-#$artikelGroepId = Read-Host "Artikelgroep Id"
-
 $extractFile = "C:\output.csv"
 
 $SQLDBQuery  = "SELECT * FROM tablename WHERE ....."
