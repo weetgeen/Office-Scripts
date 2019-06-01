@@ -1,8 +1,8 @@
 $ProgressPreference = 'SilentlyContinue'
-$exportPath = "C:\Users\Gunzshooter\Documents\Artikelen\Graham Archive\"
+$exportPath = "C:\"
 
-$webPage = "https://www.results.philips.com/#/downloads"
-$rootpage = 'results.philips.com/'
+$webPage = "URL"
+$rootpage = 'URL'
 
 $psPage = Invoke-WebRequest $webPage
 
