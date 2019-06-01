@@ -1,12 +1,16 @@
 $ProgressPreference = 'SilentlyContinue'
 $exportPath = "C:\"
 
-$webPage = "URL"
-$rootpage = 'URL'
+$webPage = "https://www.valuewalk.com/benjamin-graham/"
+$rootpage = ''
+
+$specialChars = '[#?\{\[\(\)\]\}]'
+$replacement  = ''
+
 
 $psPage = Invoke-WebRequest $webPage
 
 $urls = ($psPage).links | ? {$_.href -like "*.pdf*"} | Select-Object  href,innerText
-$urls | ForEach-Object {Invoke-WebRequest -uri ($rootpage+$_.href) -OutFile  ($exportPath+$_.innerText+".pdf")}
+$urls | ForEach-Object {Invoke-WebRequest -uri ($rootpage+$_.href) -OutFile  ($exportPath+$_.innerText+".pdf" -replace $specialChars,$replacement)}
 
 Write-Host "... PDF downloading is complete." -ForegroundColor Green
