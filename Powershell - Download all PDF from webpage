@@ -11,6 +11,12 @@ $replacement  = ''
 $psPage = Invoke-WebRequest $webPage
 
 $urls = ($psPage).links | ? {$_.href -like "*.pdf*"} | Select-Object  href,innerText
-$urls | ForEach-Object {Invoke-WebRequest -uri ($rootpage+$_.href) -OutFile  ($exportPath+$_.innerText+".pdf" -replace $specialChars,$replacement)}
+$urls | ForEach-Object{
+
+    $pdf = $_.innerText+".pdf" -replace $specialChars,$replacement
+
+    Write-Host "Downloading $pdf"
+    Invoke-WebRequest -uri ($rootpage+$_.href) -OutFile  ($exportPath+$pdf)
+}
 
 Write-Host "... PDF downloading is complete." -ForegroundColor Green
