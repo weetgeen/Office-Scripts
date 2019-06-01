@@ -1,12 +1,12 @@
 $ProgressPreference = 'SilentlyContinue'
-$exportPath = "C:\"
+$exportPath = "C:\Users\Gunzshooter\Documents\Artikelen\Graham Archive\"
 
-$webPage = "http://pdfjes.com/pagetopdf"
-$rootpage = 'http://pdfjes.com/'
+$webPage = "https://www.results.philips.com/#/downloads"
+$rootpage = 'results.philips.com/'
 
 $psPage = Invoke-WebRequest $webPage
 
-$urls = ($psPage).links | ? {$_.href -like "*.pdf"} | Select-Object  href,innerText
-$urls | ForEach-Object {Invoke-WebRequest -uri ($rootpage+$urls.href) -OutFile  ($exportPath+$urls.innerText+".pdf")}
+$urls = ($psPage).links | ? {$_.href -like "*.pdf*"} | Select-Object  href,innerText
+$urls | ForEach-Object {Invoke-WebRequest -uri ($rootpage+$_.href) -OutFile  ($exportPath+$_.innerText+".pdf")}
 
 Write-Host "... PDF downloading is complete." -ForegroundColor Green
