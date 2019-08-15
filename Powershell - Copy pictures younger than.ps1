@@ -11,7 +11,8 @@ Foreach-Object{
 
     If($Foto.LastWriteTime -gt (Get-Date).AddDays(-$Age))  #If picture is younger than one yaer
     {
-        Copy-Item $Foto.PSPath "$Destination\$Foto"   #Copy picture
+        $FotoName = $Foto.Name
+        Copy-Item $Foto.FullName "$Destination\$FotoName"  #Copy picture
         
         Write-Host "Copying: $Foto  -----------> To $Destination" #Log Proces
     }
