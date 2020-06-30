@@ -1,0 +1,48 @@
+
+<!-- https://hp-iot.nl/latexcitationmachine.php -->
+<h4>Latex URL Citations</h4></br>
+        <div class="col-6 col-12-xsmall">
+            <form enctype="multipart/form-data" action="latexcitationmachine.php"  method="post" name="matrix" class="input_append">
+            <input type="text" name="latexref" placeholder="latex_ref" required="required"/></br>
+            <input type="text" name="title" placeholder="Title" required="required"/></br>
+            <input type="text" name="author" placeholder="Author" required="required"/></br>
+            <input type="text" name="url" placeholder="url" required="required"/></br>
+            <input type="text" name="datepublished" placeholder="Date Published" required="required"/></br>
+            <input type="text" name="dateaccessed" value="<?php echo date('Y-m-d'); ?>" required="required"/></br>
+            
+        </div>
+
+        <div class="col-12">
+        <ul class="actions">
+        <li><input type="submit" value="Convert" class="primary" name="update_button"/></li>
+        </form>
+        </ul>
+        </div>
+        </br>
+<?php 
+
+    if (isset($_POST['update_button'])) {
+        $latexref	= htmlspecialchars( $_POST['latexref'],ENT_QUOTES);
+        $title	= htmlspecialchars( $_POST['title'],ENT_QUOTES);
+        $author	= htmlspecialchars( $_POST['author'],ENT_QUOTES);
+        $url	    = htmlspecialchars( $_POST['url'],ENT_QUOTES);
+        $datepublished	= htmlspecialchars( $_POST['datepublished'],ENT_QUOTES);
+        $dateaccessed	= htmlspecialchars( $_POST['dateaccessed'],ENT_QUOTES);
+        
+        $latexTitle = preg_replace('/([A-Z])/', '{$1}', $title);
+        $latexAuthor = preg_replace('/([A-Z])/', '{$1}', $author);
+        
+        echo '@misc{'.$latexref.',<br>
+                title = {'.$latexTitle .'},<br>
+                author = {'.$latexAuthor.'},<br>
+                year = {'.$datepublished.'},<br>
+                howpublished = {\url{'.$url.'}},</br>
+                note = {Accessed: '.$dateaccessed.'}</br>
+             }';
+
+        
+    
+    }else {
+    //no button pressed
+    }
+?> 		
